@@ -1,0 +1,107 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-03-08T14:39:54.313Z",
+    "end": "2021-03-08T14:40:16.655Z",
+    "duration": 22342,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "5730acd4-38d4-4c0c-a038-394539439533",
+      "title": "",
+      "fullFile": "cypress\\integration\\compra.spec.js",
+      "file": "cypress\\integration\\compra.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b80ff1ec-bb6e-4583-b7e3-0e9f49d7eca7",
+          "title": "Compra",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Efetuar uma compra de produto",
+              "fullTitle": "Compra Efetuar uma compra de produto",
+              "timedOut": null,
+              "duration": 22231,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.backgroundLogin();\ncy.visit(\"/\");\ncy.pause();\nvar nomeProduto = \"Faded Short Sleeve T-shirts\";\ncy.contains(nomeProduto).trigger(\"mouseover\");\ncy.contains(nomeProduto).parent().siblings(\"div.button-container\").children(\"a\").first().click();\ncy.get('.icon-ok').parent().should('contain.text', 'Product successfully added to your shopping cart');\ncy.get('span#layer_cart_product_title').should('contain.text', nomeProduto);\ncy.get(\".button-container a[href$='controller=order']\").click();\ncy.get(\".cart_navigation a[href$='step=1']\").click();\n/*cy.get('#email').type(\"renee.moura@hotmail.com\")\ncy.get('#passwd').type(\"101827Rm@101827Rm@\")\ncy.get(\"#SubmitLogin\").click()*/\ncy.get('[type=checkbox]#addressesAreEquals').should('have.attr', 'checked', 'checked');\ncy.get('[type=checkbox]#addressesAreEquals').should('have.attr', 'name', 'same');\ncy.get('button[name=processAddress]').click();\ncy.get('input[type=checkbox]#cgv').check();\ncy.get('button[name=processCarrier]').click();\ncy.get('.bankwire').click();\ncy.get('#cart_navigation button[type=submit]').find('span').contains('I confirm my order').click();\ncy.get('.cheque-indent strong').should('contain.text', 'Your order on My Store is complete.');\ncy.get('div.box').invoke('text').then(function (text) {\n  console.log(text.match(/[A-Z][A-Z]{8}/g));\n  cy.writeFile('cypress/fixtures/pedido.json', {\n    id: \"\".concat(text.match(/[A-Z][A-Z]{8}/g))\n  });\n});\ncy.get(\"p.cart_navigation [title='Back to orders']\").click();\ncy.readFile('cypress/fixtures/pedido.json').then(function (conteudo) {\n  cy.get('tr.first_item .history_link a').should('contain.text', conteudo.id);\n});",
+              "err": {},
+              "uuid": "034699e3-d530-4375-bcde-f24d280e9729",
+              "parentUUID": "b80ff1ec-bb6e-4583-b7e3-0e9f49d7eca7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "034699e3-d530-4375-bcde-f24d280e9729"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 22231,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "mochawesome-report",
+        "quiet": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}
